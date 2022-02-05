@@ -87,9 +87,8 @@ We would like to acknowledge each other for working on this project and helping 
 
 ---
 ### **References:**  
-	NCEI.Monitoring.info@noaa.gov. “Climate at a Glance.” Climate at a Glance | National Centers for Environmental Information (NCEI), Jan. 2022, https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12.
-	
-	Dincer, B. (2021, October 10). All natural disasters 1900-2021 / eosdis. Kaggle. Retrieved February 4, 2022, from https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis 
+NCEI.Monitoring.info@noaa.gov. “Climate at a Glance.” Climate at a Glance | National Centers for Environmental Information (NCEI), Jan. 2022, https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12.  
+Dincer, B. (2021, October 10). All natural disasters 1900-2021 / eosdis. Kaggle. Retrieved February 4, 2022, from https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis 
 
 ---
 #### **Appendix A: Questions: (any question to TA Or professor)**  
