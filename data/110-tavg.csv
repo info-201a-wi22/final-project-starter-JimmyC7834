@@ -1,6 +1,3 @@
-Contiguous U.S. Statewide Average Temperature
-Units: Degrees Fahrenheit
-Missing: -99,Rank out of 127 Years
 "Location ID","Location","Date","Value","Rank","Anomaly (1901-2000 base period)","1901-2000 Mean"
 0100,"Alabama",189501,43.1,40,-2.0,45.1
 0100,"Alabama",189502,37.4,1,-10.6,48
