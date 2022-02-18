@@ -1,0 +1,17 @@
+---
+title: "Disasters From 1970 to 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("summary_table.R")
+
+library("knitr")
+
+
+
+
+```
+
+
