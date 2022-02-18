@@ -27,20 +27,6 @@ type_group <- data %>%
   select(Type, Frequency)
 print(type_group)
 
-# View(data)
-
-#final <- ggplot(data, aes(x = Year, fill = Type))
-
-
-disaster_plot <- ggplot(type_group, aes(Frequency, Type, fill = Type)) + 
-  geom_col() +
-  labs(
-    title = "The total number of the type of disasters in U.S.",
-    x = "The total cases",
-    y = "Type of disasters",
-  )
-disaster_plot
-
 
 # year_group <- year_group %>%
 #   filter(F != 0) %>%
@@ -60,5 +46,11 @@ disaster_plot
 year_group <- data.frame(table(disasters$Year, disasters$Disaster.Type))
 year_group <- data.frame(Year = year_group$Var1, Type = year_group$Var2, F = year_group$Freq)
 
-ggplot(year_group, aes(x=Year, y=F, fill=Type, group=Type)) + geom_area()
+ggplot(year_group, aes(x=Year, y=F, fill=Type, group=Type)) + 
+  geom_area() +
+  labs(
+    title = "The frequencey of type of disaster in U.S from 1970 to 2021",
+    x = "Year",
+    y = "Frequency"
+  )
 
