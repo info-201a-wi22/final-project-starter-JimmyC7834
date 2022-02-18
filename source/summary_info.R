@@ -51,6 +51,7 @@ info_1_top_homeless <- data_1 %>%
   summarise(n_homeless = sum(No.Homeless)) %>%
   arrange(desc(n_homeless))
 
+
 install.packages("areaplot")
 library(areaplot)
 library(stringr)
@@ -59,7 +60,7 @@ library(ggplot2)
 library("plotly")
 
 
-#This data set is the one focusing on the disasters and it gives the years which they have taken place
+# This data set is the one focusing on the disasters and it gives the years which they have taken place
 data_file <- "https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-JimmyC7834/main/data/1970-2021_DISASTERS.xlsx%20-%20emdat%20data.csv"
 disasters_data <- read.csv(data_file, stringsAsFactors = FALSE)
 
@@ -81,8 +82,6 @@ us_df <- disasters_data %>%
 # the specific disaster that occurred most in each location. The question we
 # want to answer.
 # *Which disaster occurred the most each year?*
-
 new_df <- us_df %>%
   group_by(Year) %>%
   summarise(Disaster_Type = max(Disaster.Type), Max_Seq = max(Seq))
-View(new_df)
