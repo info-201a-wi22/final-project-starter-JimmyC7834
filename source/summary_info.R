@@ -11,9 +11,10 @@ library(plotly)
 data_1 <- data.frame(read.csv("../data/1970-2021_DISASTERS.xlsx - emdat data.csv"))
 data_2 <- data.frame(read.csv("../data/110-tavg.csv"))
 
+
 # clean up data
+data_1 <- data_1[data_1$ISO == "USA", ]
 data_1 <- data_1 %>%
-  filter(ISO == "USA") %>%
   select(Year, Seq, Disaster.Type, Location, Start.Year, Start.Month,
          Start.Day, End.Year, End.Month, End.Day, Total.Deaths, No.Injured, No.Affected, No.Homeless,
          Total.Affected)
@@ -27,23 +28,18 @@ summary_info_1$num_disaster_type <- length(unique(data_1 %>%
                                                        filter(Disaster.Type != "") %>%
                                                        pull(Disaster.Type)))
 
-summary_info_1$num_disaster_subtype <- length(unique(data_1 %>%
-  filter(!is.na(Disaster.Subtype)) %>%
-  filter(Disaster.Subtype != "") %>%
-  pull(Disaster.Subtype)))
-
 disasters_count <- data_1 %>%
-  filter(!is.na(Disaster.Subtype)) %>%
-  filter(Disaster.Subtype != "") %>%
-  group_by(Disaster.Subtype) %>%
+  filter(!is.na(Disaster.Type)) %>%
+  filter(Disaster.Type != "") %>%
+  group_by(Disaster.Type) %>%
   summarise(F = sum(Seq))
 
 summary_info_1$most_occurred_disaster <- disasters_count$Disaster.Subtype[disasters_count$F == max(disasters_count$F)]
 
 
-summary_info_1$most_total_damage_costed <- max(data_1 %>%
-  filter(!is.na(Total.Damages...000.US..)) %>%
-  pull(Total.Damages...000.US..)
+summary_info_1$most_total_affected <- max(data_1 %>%
+  filter(!is.na(Total.Affected)) %>%
+  pull(Total.Affected)
 )
 
 summary_info_1$most_total_deaths_costed_by_single_disaster <- max(data_1 %>%
@@ -73,10 +69,15 @@ info_1_top_homeless <- data_1 %>%
 # want to answer.
 # *Which disaster occurred the most each year?*
 
-info_1_max_seq_by_year <- us_df %>%
+info_1_max_seq_by_year <- data_1 %>%
   group_by(Year) %>%
   summarise(Disaster_Type = max(Disaster.Type), Max_Seq = max(Seq))
 
 # summeries data 2
 summary_info_2 <- list()
-summary_info_1$num_observations <- nrow(data_2)
+summary_info_2$num_observations <- nrow(data_2)
+summary_info_2$highest_temp <- max(data_2$Value)
+summary_info_2$min_temp <- min(data_2$Value)
+summary_info_2$greatest_anomaly <- max(data_2$Anomaly..1901.2000.base.period.)
+summary_info_2$state_highest_temp <- data_2$Location[data_2$Value == max(data_2$Value)]
+summary_info_2$state_lowest_temp <- data_2$Location[data_2$Value == min(data_2$Value)]
