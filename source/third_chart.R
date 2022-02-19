@@ -1,7 +1,5 @@
-
-# Thrid Chart of the project. 
+# Thrid Chart of the project.
 # set work directory
-setwd("~/Documents/final-project-starter-JimmyC7834/source")
 
 # Load the `dplyr` and `tidyr` libraries for data manipulation
 library("dplyr")

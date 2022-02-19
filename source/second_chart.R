@@ -17,10 +17,6 @@ Type <- data_1$Disaster.Type
 
 Year <- data_1$Year
 
-type_group <- data_1 %>%
-  group_by(Disaster.Type) %>%
-  summarize(Frequency = sum(Seq)) %>%
-  select(Disaster.Type, Frequency)
 
 # year_group <- year_group %>%
 #   filter(F != 0) %>%
@@ -66,7 +62,7 @@ year_group <- year_group %>%
   group_by(Year, Type) %>%
   summarise(F = sum(F))
 
-ggplot(year_group, aes(x=Year, y=F, fill=Type, group=Type)) + 
+chart <- ggplot(year_group, aes(x=Year, y=F, fill=Type, group=Type)) +
   geom_area() +
   labs(
     title = "The frequencey of type of disaster in U.S from 1970 to 2021",

@@ -34,7 +34,7 @@ disasters_count <- data_1 %>%
   group_by(Disaster.Type) %>%
   summarise(F = sum(Seq))
 
-summary_info_1$most_occurred_disaster <- disasters_count$Disaster.Subtype[disasters_count$F == max(disasters_count$F)]
+summary_info_1$most_occurred_disaster <- disasters_count$Disaster.Type[disasters_count$F == max(disasters_count$F)]
 
 
 summary_info_1$most_total_affected <- max(data_1 %>%
@@ -55,23 +55,6 @@ summary_info_1$most_total_homeless_costed_by_single_disaster <- max(data_1 %>%
 summary_info_1$average_disaster_count <- mean((data_1 %>%
   group_by(Year) %>%
   summarise(count = sum(Seq)))$count)
-
-# aggegate tables data 1
-info_1_top_homeless <- data_1 %>%
-  filter(!is.na(No.Homeless)) %>%
-  filter(Disaster.Type != "") %>%
-  group_by(Disaster.Type) %>%
-  summarise(n_homeless = sum(No.Homeless)) %>%
-  arrange(desc(n_homeless))
-
-# Here, We used the data frame we created to just focus on the locations and
-# the specific disaster that occurred most in each location. The question we
-# want to answer.
-# *Which disaster occurred the most each year?*
-
-info_1_max_seq_by_year <- data_1 %>%
-  group_by(Year) %>%
-  summarise(Disaster_Type = max(Disaster.Type), Max_Seq = max(Seq))
 
 # summeries data 2
 summary_info_2 <- list()

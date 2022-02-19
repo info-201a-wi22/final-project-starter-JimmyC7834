@@ -1,25 +1,35 @@
 ---
 title: "Climate Change in the United States"
-author: "Hamda Hassan, Jimmy Cheong, Takumi Shimada, Yohannes Tekle"
+author: "Jimmy Cheong, Hamda Hassan, Takumi Shimada, Yohannes Tekle"
 date: "1/22/2022"
 output: html_document
 ---
 
 
 ```{r setup, include=FALSE}
-# library(dplyr)
-# library(ggplot2)
-# library(tidyr)
-# library(maps)
-# library(knitr)
-# source("analysis.R")
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(maps)
+library(knitr)
+source("../source/data_access.R")
+load_summaries_and_tables()
+# source("../source/summary_table.R")
+# source("../source/summary_info.R")
+# source("../source/first_chart.R")
+# source("../source/second_chart.R")
+# source("../source/third_chart.R")
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(out.width='1000px', dpi=250)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
-
-\
 
 **Affiliation:**
 _INFO-201 - Technical Foundations of Informatics - The Information School - University of Washington_
+
+![](https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/5392/climate_change_header.jpg?itok=AlQyQbxj)
+
+\
 
 #### **Abstract**
 For our project, we chose to discuss the issue of climate change by answering the question _**“What causes and contributes to the climate crisis in the U.S?”**_. This question will help us learn more about climate change, potentially its effects on the U.S. and further understand the root of the problem. To address this question we will analyze our data and get concise answers.
@@ -73,8 +83,7 @@ While these questions are asked so that we can analyze the impact and its seriou
 \
 
 ## The Dataset
-**First Dataset** :[All Natural Disasters from 1970 to 2021 in the U.S.
-](https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis)
+### **First Dataset:**  [All Natural Disasters from 1970 to 2021 in the U.S.](https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis)
 The first data we found and that we would work with consists of two different files, one is all-natural disasters from 1990-2021 and the other which we would be using is focusing on **1970-2022**. The data covered different countries, but we had filtered the dataset and kept the focus on the **United States** only. We will use this data to understand the different kinds of issues we are dealing with, also we will be comparing different disasters to learn which ones have the most serious impact upon the region.
 
 **Data Credibility:**
@@ -85,7 +94,38 @@ This data has around **1000 observations** and more than **45 variables**, where
 
 \
 
-**Second Data** : [Contiguous U.S. Statewide Average Temperature](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12)
+#### **Summaries**
+
+- There are **`r summary_info_1$num_observations`** observations in this dataset.
+- There are **`r summary_info_1$num_disaster_type`**  types of disasters in the dataset.
+- The highest number of people affected by a disaster is: **`r summary_info_1$most_total_affected`**.
+- The highest number of deaths caused by a disaster is: **`r summary_info_1$most_total_deaths_costed_by_single_disaster`**.
+- The highest number of homeless caused by a disaster is: **`r summary_info_1$most_total_homeless_costed_by_single_disaster`**.
+- The most occurred type of disaster between 1970 and 2021 is **`r summary_info_1$most_occurred_disaster`**.
+- There are **`r summary_info_1$average_disaster_count`** disasters occurred every year by average between 1970 and 2021.
+
+\
+
+#### **Aggregate Tables**
+Here, We used the data frame we created to just focus on the locations and the specific disaster that occurred most in each location. The question we want to answer. **Which disaster occurred the most each year?**
+```{r info_1_max_seq_by_year,echo=FALSE}
+kable(info_1_max_seq_by_year, caption = "The Most Occurred Disaster by year")
+```
+
+\
+
+We next put focus on the number of deaths and homeless caused by disasters to see which disaster causes most impact on people. We could also guess the most impacted region by looking at the type of disaster. Answering the question **Who is most vulnerable to climate change issues?**.
+```{r info_1_disaster_deaths,echo=FALSE}
+kable(info_1_disaster_deaths, caption = "Ranking of Disaster Caused Most Deaths")
+```
+```{r info_1_top_homeless,echo=FALSE}
+kable(info_1_top_homeless, caption = "Ranking of Disaster Caused Most Homeless")
+```
+
+\
+\
+
+### **Second Data:**  [Contiguous U.S. Statewide Average Temperature](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12)
 This data contains the monthly average temperature of each state in the United States from **1895 to 2021**. This could help us prove climate change by showing the trends of increasing temperature in the U.S. We can also use the change in temperature to learn the intensity of the current temperature change.
 
 **Data Credibility:**
@@ -94,6 +134,55 @@ This data was created by the National Centers For Environmental Information (NCE
 **Data Size:**
 This data consists of around **70k observations** and **6 variables**. Indicating the date, temperature in Fahrenheit, ranking of the year, anomaly, etc.
 
+\
+
+#### **Summary**
+
+- There are **`r summary_info_2$num_observations`** observations in this dataset.
+- The greatest anomaly (difference between temperature and the average temperature) is: **`r summary_info_2$greatest_anomaly`**.
+- The state with the highest temperature is: **`r summary_info_2$state_highest_temp`**.
+- The highest temperature of a state is: **`r summary_info_2$highest_temp`**.
+- The state with the lowest temperature is: **`r summary_info_2$state_lowest_temp`**.
+- The lowest temperature of a state is: **`r summary_info_2$min_temp`**.
+
+\
+
+#### **Aggregate Tables**
+This table helps us to see the avg temperature of states. By looking at the table we can find the state with lowest mean temperature and the one with the highest. _(Rounded to 3 digits)_
+```{r states_df,echo=FALSE}
+kable(states_df, caption = "The Average Temperature of States")
+```
+
+This table shows the top 10 state with the highest average temperature anomaly. We can see that all of the top 10 states have an increase temperature. _(Rounded to 3 digits)_
+```{r info_2_max_avg_anomaly,echo=FALSE}
+kable(info_2_max_avg_anomaly, caption = "The Average Temperature of States")
+```
+
+\
+
+### Analysis:
+The graph will show us how the deaths are distributed, meaning which disaster caused the most deaths.
+```{r first chart,echo=FALSE}
+source("../source/data_access.R")
+plot(first_chart(), caption = "Distribution of Deaths for each disaster")
+```
+
+\
+
+The chart shows type of disasters drought, earthquake, epidemic, extreme temperature, flood, landslide, storm, volcanic activity, and wildfire which happened from 1970 to 2021. The x axis is the by year y axis is the frequency of the disasters.
+```{r second chart,echo=FALSE}
+source("../source/data_access.R")
+plot(second_chart(), caption = "The Occurrence of Disasters between 1970 and 2021")
+```
+
+\
+
+```{r third chart,echo=FALSE}
+source("../source/data_access.R")
+plot(thrid_chart(), caption = "The Occurrence of Disasters between 1970 and 2021")
+```
+
+\
 \
 
 ### Expected Implications:
@@ -110,58 +199,10 @@ The first limitation of the project that we need to solve would be the credibili
 We would like to acknowledge each other for working on this project and helping each other to fulfill the requirements of this project. We also would like to thank our teacher's **assistant (TA)** for helping us understand the specification of the project with patience and kindness.
 
 \
+\
 
 ### References:
-NCEI.Monitoring.info@noaa.gov. “Climate at a Glance.” Climate at a Glance | National Centers for Environmental Information (NCEI), Jan. 2022, https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12.
-Dincer, B. (2021, October 10). All natural disasters 1900-2021 / eosdis. Kaggle. Retrieved February 4, 2022, from https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis
+_NCEI.Monitoring.info@noaa.gov. “Climate at a Glance.” Climate at a Glance | National Centers for Environmental Information (NCEI), Jan. 2022, https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202112/12._
+_Dincer, B. (2021, October 10). All natural disasters 1900-2021 / eosdis. Kaggle. Retrieved February 4, 2022, from https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis_
 
 \
-
-#### **Appendix A: Questions: (any question to TA Or professor)**
-_N/A_
-
-\
-
-## What is this file for?
-
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
-
-* Please see Canvas for more details.
-
-## ACCESSING THE /source DIRECTORY
-### Example 1: Source some code and run a function
-```{r}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and
-# then "source" an R file (data_access.R)
-source("../source/data_access.R")
-data_access_test()
-```
-
-### Example 2: Initialize a variable and then use it
-```{r}
-# Example 1: This function was "sourced" above
-msg <- data_access_test(" Morgan!")
-```
-
-> `r msg` Hope you have a good day!!
-
-## ABOUT THIS FILE:
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

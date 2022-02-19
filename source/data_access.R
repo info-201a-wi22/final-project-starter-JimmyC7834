@@ -1,8 +1,19 @@
-# Example: Project Data Access Functions  ----
-#----------------------------------------------------------------------------#
-# These functions are used to access data sources ... 
-#----------------------------------------------------------------------------#
-data_access_test <- function (name="World!") {
-  t <- paste0("Hello: ", name)
-  return(t)
+first_chart <- function () {
+  source("../source/first_chart.R")
+  return(chart)
+}
+
+second_chart <- function () {
+  source("../source/second_chart.R")
+  return(chart)
+}
+
+thrid_chart <- function () {
+  source("../source/third_chart.R")
+  return(chart)
+}
+
+load_summaries_and_tables <- function () {
+  source("../source/summary_info.R")
+  source("../source/summary_table.R")
 }
