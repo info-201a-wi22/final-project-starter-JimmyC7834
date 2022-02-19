@@ -28,7 +28,7 @@ data_group <- data_1 %>%
 
 # Create a stacked bar chart of the number of people in each state
 # Fill the bars using different colors to show racial composition
-ggplot(make_data) +
+chart <- ggplot(make_data) +
   geom_col(mapping = aes(x = Dameges, y = Start.Day, fill = Dameges))
 
 
