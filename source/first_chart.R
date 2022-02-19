@@ -24,4 +24,5 @@ new_df <- data_1 %>%
 # The graph will show us how the deaths are distributed, meaning which disaster
 # caused the most deaths.
 chart <- ggplot(data = new_df) +
-  geom_col(mapping = aes(x = Disaster, y = Death, fill = Disaster), position = "dodge")
+  geom_col(mapping = aes(x = Disaster, y = Death, fill = Disaster), position = "dodge") +
+  scale_x_discrete(labels = c(1, 2, 3, 4, 5, 6, 7, 8, 9))
