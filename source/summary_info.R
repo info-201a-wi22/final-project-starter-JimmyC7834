@@ -8,8 +8,8 @@ library(ggplot2)
 library(plotly)
 
 # summerise usa disaster data
-data_1 <- data.frame(read.csv("../data/1970-2021_DISASTERS.xlsx - emdat data.csv"))
-data_2 <- data.frame(read.csv("../data/110-tavg.csv"))
+data_1 <- data.frame(read.csv("data/1970-2021_DISASTERS.xlsx - emdat data.csv"))
+data_2 <- data.frame(read.csv("data/110-tavg.csv"))
 
 
 # clean up data

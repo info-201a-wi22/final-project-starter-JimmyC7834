@@ -96,7 +96,7 @@ This data has around **1000 observations** and more than **45 variables**, where
 
 #### **Summaries**
 
-- There are **`r summary_info_1$num_observations`** observations in this dataset.
+-
 - There are **`r summary_info_1$num_disaster_type`**  types of disasters in the dataset.
 - The highest number of people affected by a disaster is: **`r summary_info_1$most_total_affected`**.
 - The highest number of deaths caused by a disaster is: **`r summary_info_1$most_total_deaths_costed_by_single_disaster`**.
