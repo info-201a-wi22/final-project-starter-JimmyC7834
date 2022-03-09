@@ -1,7 +1,6 @@
-# Load the `dplyr` and `tidyr` libraries for data manipulation
-library("dplyr")
-library("tidyr")
-library("ggplot2")
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 
 get_chart3 <- function(type = -1){
   data_1 <- data.frame(read.csv("data/1970-2021_DISASTERS.xlsx - emdat data.csv"))

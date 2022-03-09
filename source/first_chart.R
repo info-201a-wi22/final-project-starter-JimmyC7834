@@ -2,9 +2,7 @@ library(areaplot)
 library(stringr)
 library(dplyr)
 library(ggplot2)
-library("plotly")
-library("dplyr")
-library("tidyr")
+library(tidyr)
 
 get_chart1 <- function(year = -1) {
   # Chart of the disasters code:

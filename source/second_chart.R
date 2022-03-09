@@ -1,9 +1,8 @@
-install.packages("areaplot")
+install.packages(areaplot)
 library(areaplot)
 library(stringr)
 library(dplyr)
 library(ggplot2)
-library("plotly")
 
 get_chart2 <- function(checks = list()) {
   data_1 <- data.frame(read.csv("data/1970-2021_DISASTERS.xlsx - emdat data.csv"))
