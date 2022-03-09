@@ -1,4 +1,4 @@
-install.packages(areaplot)
+# install.packages(areaplot)
 library(areaplot)
 library(stringr)
 library(dplyr)

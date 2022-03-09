@@ -76,23 +76,36 @@ main_panel <- tabPanel(
 summary_panel <- tabPanel(
   "Summaries",
   titlePanel("Data Summaries of CCUS"),
-  p("The goal of our project is to bring awareness on an issue that many people doubt even though there is evidence that proves it. We want people to act and to care about the environment because we only have one earth and polluting it and extracting the natural resources only causes us serious problems. We must educate ourselves on this issue, then make change in our daily activity. Being aware that a problem exists is the first step, once we have acknowledged it, then we can act. Making small changes such as using less gas, recycling correctly, using less plastic containers, and eating less will benefit us and help us make our earth safer for everyone."),
-  h2("Three Takeaways"),
-  p("The climate change is REAL", style = "font-weight: bold; font-style: italic;"),
-  p("Exetreme Weathers are getting more as climate changes", style = "font-weight: bold; font-style: italic;"),
-  p("We should all start taking actions from now", style = "font-weight: bold; font-style: italic;")
+  sidebarLayout(
+    sidebarPanel(
+      h2("Three Takeaways"),
+      p("The climate change is REAL", style = "font-weight: bold; font-style: italic;"),
+      p("Exetreme Weathers are getting more as climate changes", style = "font-weight: bold; font-style: italic;"),
+      p("We should all start taking actions from now", style = "font-weight: bold; font-style: italic;")
+    ),
+    mainPanel(
+      p("The goal of our project is to bring awareness on an issue that many people doubt even though there is evidence that proves it. We want people to act and to care about the environment because we only have one earth and polluting it and extracting the natural resources only causes us serious problems. We must educate ourselves on this issue, then make change in our daily activity. Being aware that a problem exists is the first step, once we have acknowledged it, then we can act. Making small changes such as using less gas, recycling correctly, using less plastic containers, and eating less will benefit us and help us make our earth safer for everyone."),
+    )
+  )
 )
 
 chart1_panel <- tabPanel(
   "Chart 1",
   titlePanel("Total Deaths by Dieasters in a certain Year"),
-  p("This chart combines the total deaths that occurred for each disaster from the years 1970-2021. Just by looking at the chart, you will be able to see the disaster that caused the highest number of deaths and the disaster that caused the lowest. If you also look at the x and y axis, you can see that this chart is showing a relationship between the deaths and the disasters."),
-  selectInput(
-    inputId = "chart1_year",
-    label = "Select Year of Data:",
-    choices = rbind("All Years", seq(from=1970, to=2021))
-  ),
-  plotlyOutput("chart1")
+  sidebarLayout(
+    sidebarPanel(
+      p("This chart combines the total deaths that occurred for each disaster from the years 1970-2021. Just by looking at the chart, you will be able to see the disaster that caused the highest number of deaths and the disaster that caused the lowest. If you also look at the x and y axis, you can see that this chart is showing a relationship between the deaths and the disasters.")
+    ),
+    mainPanel(
+      selectInput(
+        inputId = "chart1_year",
+        label = "Select Year of Data:",
+        choices = rbind("All Years", seq(from=1970, to=2021))
+      ),
+      plotlyOutput("chart1"),
+    )
+  )
+
 )
 
 chart2_panel <- tabPanel(
@@ -110,13 +123,17 @@ chart2_panel <- tabPanel(
 chart3_panel <- tabPanel(
   "Chart 3",
   titlePanel("The Sum of Damages to People by Disasters"),
-  p("This chart had show the total number of people got affected/injured/homeless due to disasters. This chart tried to answer who are most vulnerable to natural disasters in the U.S. People could also select the data for a specific type of disaster to do futher and more detailed research."),
-  selectInput(
-    inputId = "chart3_type",
-    label = "Type of Disasters",
-    choices = rbind("All Disasters", unique(data_1$Disaster.Type))
+  sidebarPanel(
+    p("This chart had show the total number of people got affected/injured/homeless due to disasters. This chart tried to answer who are most vulnerable to natural disasters in the U.S. People could also select the data for a specific type of disaster to do futher and more detailed research."),
   ),
-  plotlyOutput("chart3")
+  mainPanel(
+    selectInput(
+      inputId = "chart3_type",
+      label = "Type of Disasters",
+      choices = rbind("All Disasters", unique(data_1$Disaster.Type))
+    ),
+    plotlyOutput("chart3")
+  )
 )
 
 acknowledgements_panel <- tabPanel(
