@@ -19,12 +19,12 @@ get_chart1 <- function(year = -1) {
   }
 
 
-  new_df <- data_1 %>%
+  deaths <- data_1 %>%
     group_by(Disaster = Disaster.Type) %>%
     summarise(Death = sum(Total.Deaths, na.rm = TRUE))
 
 
-  dis <- ggplot(data = new_df) +
+  chart <- ggplot(data = deaths) +
     geom_col(mapping = aes(x = Disaster, y = Death, fill = Disaster), position = "dodge") +
     scale_x_discrete(labels = c("Drought", "Earthquake", "Epidemic", "Extreme temperature", "Flood", "Landslide", "Storm", "Volcanic activity", "Wildfire")) +
     labs(
@@ -33,5 +33,5 @@ get_chart1 <- function(year = -1) {
       y = "Deaths"
     )
 
-  return(dis)
+  return(chart)
 }

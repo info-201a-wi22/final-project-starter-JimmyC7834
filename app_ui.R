@@ -61,17 +61,32 @@ main_panel <- tabPanel(
   textOutput("summary2_3"),
   textOutput("summary2_4"),
   textOutput("summary2_5"),
-  textOutput("summary2_6")
+  textOutput("summary2_6"),
+  h2("Findings"),
+  p("Has climate change always been an issue?", style="font-weight: bold; font-style: italic;"),
+  p("Climate change has not always been an issue in the beginning of 1970. From the chart, which describes the frequency of type of disaster in U.S from 1970 to 2021, there are many types of disaster such as drought, earthquake, epidemic, extreme temperature, flood, landslide, storm, volcanic activity, and wildfire in U.S. Some of them have been big issues, but some of them have not. In the beginning around 1970, climate change has not been an issue as the chart indicates the frequency of disaster was not high. However, from 1990, climate change has been an issue in 1990 especially such as drought, flood and storm and climate change has been an issue nowadays."),
+  p("What causes and contributes to the climate crisis in the U.S?", style="font-weight: bold; font-style: italic;"),
+  p("Who is most vulnerable to climate change issues?", style="font-weight: bold; font-style: italic;"),
+  p("Which state has the most/least intense climate (for example, intense temperature change)?", style="font-weight: bold; font-style: italic;"),
+  p("After going through the two data sets we found and analyzing it using Rstudio and DataSpell, we have learned a lot about climate change in the United States. We have learned about the different disasters that are common in this country and how these disasters impacted the lives of people here.  Based on the dates from both our data, it’s clear that our climate has been changing, there were less occurrences of storms and other disasters in the 1970s and the temperatures of states were different, but the issue has always been there. So, to answer our first question, climate change has always been an issue and it will continue to be an issue. Many different events and activities contribute to climate These activities endanger humans, animals, the water, etc. The people that are most vulnerable to climate change are those that live near area where disasters occur. These disasters have long lasting effects. They cause homelessness and economic problems. For example, from our data, we have learned that storms that have occurred between 1970 and 2021 have caused a total of 534132 homelessness. This is a large number, and it means that so many people have lost everything because of these disasters and because of our climate situation. The average temperature for each state has also been changing. The state that has the most intense climate is the state of Florida and its average temperature between 1995 and 2021 was 70.136. The state with the lowest climate or the lowest average temperature between 1995 and 2021 was North Dakota with an average temperature of 39.683."),
+  h2("Discussion"),
+  p("Our findings have helped us learn new facts about climate change. Before we started this project and before we started our research, we knew very little about climate change and we had a lot of assumptions but working on this project has changed our thinking. Using our two data sets, we have learned that the natural disasters that occur have serious consequences, even if it’s just one. The death of innocent people is the biggest issue that comes after the disasters, but the problem does not stop with deaths. After the deaths, there are people that lose their jobs, their homes, and almost everything else. We have also learned about the effects these disasters and hot temperatures have on the animals and how they change the earth. All these findings are important because they help us understand that climate change is not something to be taken lightly. It’s a serious issue that needs all our attention. If we want to change our climate crisis, we need to make a lot of changes in our lives. There are changes that government institutions could make, there are changes that big companies could make, and there are changes we civilians could make."),
 )
 
 summary_panel <- tabPanel(
   "Summaries",
-  titlePanel("Data Summaries of CCUS")
+  titlePanel("Data Summaries of CCUS"),
+  p("The goal of our project is to bring awareness on an issue that many people doubt even though there is evidence that proves it. We want people to act and to care about the environment because we only have one earth and polluting it and extracting the natural resources only causes us serious problems. We must educate ourselves on this issue, then make change in our daily activity. Being aware that a problem exists is the first step, once we have acknowledged it, then we can act. Making small changes such as using less gas, recycling correctly, using less plastic containers, and eating less will benefit us and help us make our earth safer for everyone."),
+  h2("Three Takeaways"),
+  p("The climate change is REAL", style = "font-weight: bold; font-style: italic;"),
+  p("Exetreme Weathers are getting more as climate changes", style = "font-weight: bold; font-style: italic;"),
+  p("We should all start taking actions from now", style = "font-weight: bold; font-style: italic;")
 )
 
 chart1_panel <- tabPanel(
   "Chart 1",
   titlePanel("Total Deaths by Dieasters in a certain Year"),
+  p("This chart combines the total deaths that occurred for each disaster from the years 1970-2021. Just by looking at the chart, you will be able to see the disaster that caused the highest number of deaths and the disaster that caused the lowest. If you also look at the x and y axis, you can see that this chart is showing a relationship between the deaths and the disasters."),
   selectInput(
     inputId = "chart1_year",
     label = "Select Year of Data:",
@@ -83,7 +98,8 @@ chart1_panel <- tabPanel(
 chart2_panel <- tabPanel(
   "Chart 2",
   titlePanel("The Frequencey of Type of Disasters in U.S from 1970 to 2021"),
-  checkboxGroupInput("chart2_checks", "Choose Desaster Type(s):",
+  p("This chart indicates the frequency of type of disaster such as drought, earthquake, epidemic, extreme temperature, flood, landslide, storm, volcanic activity, wildfire in U.S from 1970 to 2021. Each disaster is labeled in color, for example, drought is red, earthquake is brown and etc. By doing this, the audience and researcher distinguish the type of disaster and look at each trend by year. They could also select the data of the type of disaster desired to do more specific researches. This chart tried to answer the first question, Has climate change always been an issue?"),
+  checkboxGroupInput("chart2_checks", "Choose Disaster Type(s):",
     choiceNames = unique(data_1$Disaster.Type),
     choiceValues = unique(data_1$Disaster.Type),
     selected = unique(data_1$Disaster.Type)
@@ -93,11 +109,12 @@ chart2_panel <- tabPanel(
 
 chart3_panel <- tabPanel(
   "Chart 3",
-  titlePanel("The Frequencey of Damages by Desasters"),
+  titlePanel("The Sum of Damages to People by Disasters"),
+  p("This chart had show the total number of people got affected/injured/homeless due to disasters. This chart tried to answer who are most vulnerable to natural disasters in the U.S. People could also select the data for a specific type of disaster to do futher and more detailed research."),
   selectInput(
     inputId = "chart3_type",
-    label = "Type of Desasters",
-    choices = rbind("All Desasters", unique(data_1$Disaster.Type))
+    label = "Type of Disasters",
+    choices = rbind("All Disasters", unique(data_1$Disaster.Type))
   ),
   plotlyOutput("chart3")
 )

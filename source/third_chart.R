@@ -14,20 +14,20 @@ get_chart3 <- function(type = -1){
     data_1 <- data_1[data_1$Disaster.Type == type, ]
   }
 
-  make_data <- data_1 %>%
+  summary_data <- data_1 %>%
     summarise(sum_homeless = sum(No.Homeless, na.rm = TRUE), sum_injured = sum(No.Injured, na.rm = TRUE), sum_affected = sum(No.Affected, na.rm = TRUE))
 
   t_data <- data.frame(
     Type = c("Homeless", "Injured", "Affected"),
-    Sum = c(make_data$sum_homeless, make_data$sum_injured, make_data$sum_affected)
+    Sum = c(summary_data$sum_homeless, summary_data$sum_injured, summary_data$sum_affected)
   )
 
   chart <- ggplot(t_data, aes(x = Type, y = Sum, fill = Type)) +
     geom_bar(stat='identity') +
     labs(
-      title = "The Frequencey of Damages by Desasters",
+      title = "The Sum of Damages to People by Desasters",
       x = "Type of Desasters",
-      y = "Frequency"
+      y = "Number of People"
     )
 
   return(chart)
