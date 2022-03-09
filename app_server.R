@@ -4,29 +4,12 @@ source("source/data_access.R")
 load_summaries_and_tables()
 
 server <- function(input, output) {
-  # output$chart <- renderPlotly({
-  #   return(create_chart(data, s_country = input$country_opt, yvar = input$var_opt))
-  # })
-  #
-  # output$summary1 <- renderPlotly({
-  #   return(create_summary1(summaries$avg_co2_e_2020))
-  # })
-  #
-  # output$summary2 <- renderText({
-  #   return(paste(c(paste(c(summaries$country_w_highest_co2_e[1], " with ", summaries$country_w_highest_co2_e[2])), " million tonnes CO2")))
-  # })
-  #
-  # output$summary3 <- renderText({
-  #   return(paste(c(paste(c(summaries$country_w_lowest_co2_e[1], " with ", summaries$country_w_lowest_co2_e[2])), " million tonnes CO2")))
-  # })
-  #
-  # output$summary4 <- renderText({
-  #   return(paste(c(paste(c(summaries$country_w_greatest_co2_growth[1], " with ", summaries$country_w_greatest_co2_growth[2])), " % growth since 1990")))
-  # })
-  #
-  # output$summary5 <- renderText({
-  #   return(paste(c(paste(c(summaries$country_w_lowest_co2_growth[1], " with ", summaries$country_w_lowest_co2_growth[2])), " % growth since 1990")))
-  # })
+
+  output$chart1 <- renderPlotly(return(get_chart1(year = input$chart1_year)))
+
+  output$chart2 <- renderPlotly(return(get_chart2(checks = input$chart2_checks)))
+
+  output$chart3 <- renderPlotly(return(get_chart3(type = input$chart3_type)))
 
   output$summary1_1 <- renderText({
     return(paste(c("There are ", summary_info_1$num_observations, " observations in this dataset.")))
